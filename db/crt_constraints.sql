@@ -22,16 +22,16 @@ alter table formulating
    add constraint fk_formulating_drug foreign key (drug_id)
       references drug (drug_id);
 
-alter table fraishorsforfait
-   add constraint fk_fraishorsforfait_expense_form foreign key (expense_form_id)
+alter table extra_flate_rate_expense
+   add constraint fk_extra_flate_rate_expense_expense_form foreign key (expense_form_id)
       references expense_form (expense_form_id);
 
 alter table interacting
-   add constraint fk_interacting_drug foreign key (dru_drug_id)
+   add constraint fk_interacting_drug_src foreign key (drug_id_src)
       references drug (drug_id);
 
 alter table interacting
-   add constraint fk_interacting_drug foreign key (drug_id)
+   add constraint fk_interacting_drug_dest foreign key (drug_id_dest)
       references drug (drug_id);
 
 alter table inviting
@@ -42,13 +42,13 @@ alter table inviting
    add constraint fk_inviting_practitioner foreign key (practitioner_id)
       references practitioner (practitioner_id);
 
-alter table ligne_fraisforfait
-   add constraint fk_ligne_fraisforfait_expense_form foreign key (expense_form_id)
+alter table expense_form_detail
+   add constraint fk_expense_form_detail_expense_form foreign key (expense_form_id)
       references expense_form (expense_form_id);
 
-alter table ligne_fraisforfait
-   add constraint fk_ligne_fraisforfait_flate_rate foreign key (expense_flat_rate_id)
-      references flate_rate (expense_flat_rate_id);
+alter table expense_form_detail
+   add constraint fk_expense_form_detail_flate_rate_expense foreign key (flate_rate_expense_id)
+      references flate_rate_expense (flate_rate_expense_id);
 
 alter table offering
    add constraint fk_offering_visit_report foreign key (report_id)
