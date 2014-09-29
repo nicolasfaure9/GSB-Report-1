@@ -15,7 +15,6 @@ create table activity  (
 /*==============================================================*/
 create table component  (
    component_id       int(11)                         not null,
-   code_composant     char(4),
    component_name     varchar(100),
    constraint pk_component primary key (component_id)
 );
@@ -26,7 +25,6 @@ create table component  (
 create table district  (
    district_id        int(11)       not null       auto_increment,
    sector_id          int(11),
-   district_code      char(2),
    district_name      varchar(100),
    constraint pk_district primary key (district_id)
 );
@@ -36,7 +34,6 @@ create table district  (
 /*==============================================================*/
 create table dosage  (
    dosage_id          int(11)       not null       auto_increment,
-   code_dosage        char(10),
    dosage_quantity    numeric(2,0),
    dosage_unit        char(10),
    constraint pk_dosage primary key (dosage_id)
@@ -62,9 +59,9 @@ create table drug  (
 /*==============================================================*/
 create table expense_form_detail  (
    expense_form_id    int(11)                         not null,
-   expense_flat_rate_id int(11)                         not null,
+   flate_rate_expense_id int(11)                         not null,
    detail_quantity    int(11),
-   constraint pk_expense_account_detail primary key (expense_form_id, expense_flat_rate_id)
+   constraint pk_expense_account_detail primary key (expense_form_id, flate_rate_expense_id)
 );
 
 /*==============================================================*/
@@ -98,7 +95,6 @@ create table extra_flate_rate_expense  (
 /*==============================================================*/
 create table family  (
    family_id          int(11)       not null       auto_increment,
-   family_code        char(3),
    family_name        varchar(100),
    constraint pk_family primary key (family_id)
 );
@@ -107,10 +103,10 @@ create table family  (
 /* Table : flate_rate_expense                                */
 /*==============================================================*/
 create table flate_rate_expense  (
-   expense_flat_rate_id int(11)       not null       auto_increment,
-   expense_flat_rate_name varchar(100),
-   expense_flat_rate_amount numeric(11,2),
-   constraint pk_flate_rate_expenses primary key (expense_flat_rate_id)
+   flate_rate_expense_id int(11)       not null       auto_increment,
+   flate_rate_expense_name varchar(100),
+   flate_rate_expense_amount numeric(11,2),
+   constraint pk_flate_rate_expenses primary key (flate_rate_expense_id)
 );
 
 /*==============================================================*/
@@ -127,7 +123,6 @@ create table formulating  (
 /*==============================================================*/
 create table individual_type  (
    individual_type_id int(11)       not null       auto_increment,
-   individual_type_code char(5),
    individual_type_name varchar(100),
    constraint pk_individual_type primary key (individual_type_id)
 );
@@ -136,9 +131,9 @@ create table individual_type  (
 /* Table : interacting                                        */
 /*==============================================================*/
 create table interacting  (
-   dru_drug_id        int(11)                         not null,
-   drug_id            int(11)                         not null,
-   constraint pk_interacting primary key (dru_drug_id, drug_id)
+   drug_id_src        int(11)                         not null,
+   drug_id_dest            int(11)                         not null,
+   constraint pk_interacting primary key (drug_id_src, drug_id_dest)
 );
 
 /*==============================================================*/
@@ -156,7 +151,6 @@ create table inviting  (
 /*==============================================================*/
 create table laboratory  (
    laboratory_id      int(11)       not null       auto_increment,
-   laboratory_code    char(2),
    laboratory_name    varchar(100),
    sales_manager      varchar(100),
    constraint pk_laboratory primary key (laboratory_id)
@@ -214,7 +208,6 @@ create table practitioner  (
 /*==============================================================*/
 create table practitioner_type  (
    practitioner_type_id int(11)       not null       auto_increment,
-   practitioner_type_code char(3),
    practitioner_type_name varchar(100),
    practitioner_type_place varchar(200),
    constraint pk_practitioner_type primary key (practitioner_type_id)
@@ -236,7 +229,6 @@ create table prescribing  (
 /*==============================================================*/
 create table presentation  (
    presentation_id    int(11)                         not null,
-   presentation_code  char(2),
    presentation_name  varchar(100),
    constraint pk_presentation primary key (presentation_id)
 );
@@ -246,7 +238,6 @@ create table presentation  (
 /*==============================================================*/
 create table sector  (
    sector_id          int(11)       not null       auto_increment,
-   sector_code        char(2),
    sector_name        varchar(100),
    constraint pk_sector primary key (sector_id)
 );
@@ -266,7 +257,6 @@ create table setting_up  (
 /*==============================================================*/
 create table speciality  (
    speciality_id      int(11)       not null       auto_increment,
-   speciality_code    char(5),
    speciality_name    varchar(100),
    constraint pk_speciality primary key (speciality_id)
 );

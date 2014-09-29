@@ -51,7 +51,6 @@ class FamilyDAO extends DAO
     protected function buildDomainObject($row) {
         $family = new Family();
         $family->setId($row['family_id']);
-        $family->setCode($row['family_code']);
         $family->setName($row['family_name']);
         return $family;
     }
