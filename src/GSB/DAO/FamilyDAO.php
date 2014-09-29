@@ -27,7 +27,7 @@ class FamilyDAO extends DAO
     /**
      * Returns the family matching the given id.
      *
-     * @param integer $id
+     * @param integer $id The family id.
      *
      * @return \GSB\Domain\Family|throws an exception if no family is found.
      */
