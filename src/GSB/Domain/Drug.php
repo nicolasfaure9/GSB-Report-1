@@ -108,6 +108,14 @@ class Drug
         $this->contraindication = $contraindication;
     }
 
+    public function getSamplePrice() {
+        return $this->samplePrice;
+    }
+
+    public function setSamplePrice($samplePrice) {
+        $this->samplePrice = $samplePrice;
+    }
+
     public function getFamily() {
         return $this->family;
     }

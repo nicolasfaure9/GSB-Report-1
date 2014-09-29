@@ -27,7 +27,7 @@ class FamilyDAO extends DAO
     /**
      * Returns the family matching the given id.
      *
-     * @param integer $id
+     * @param integer $id The family id.
      *
      * @return \GSB\Domain\Family|throws an exception if no family is found.
      */
@@ -51,7 +51,6 @@ class FamilyDAO extends DAO
     protected function buildDomainObject($row) {
         $family = new Family();
         $family->setId($row['family_id']);
-        $family->setCode($row['family_code']);
         $family->setName($row['family_name']);
         return $family;
     }

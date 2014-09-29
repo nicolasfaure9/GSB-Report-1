@@ -12,13 +12,6 @@ class Family
     private $id;
 
     /**
-     * Code.
-     *
-     * @var string
-     */
-    private $code;
-
-    /**
      * Name.
      *
      * @var string
@@ -31,14 +24,6 @@ class Family
 
     public function setId($id) {
         $this->id = $id;
-    }
-
-    public function getCode() {
-        return $this->code;
-    }
-
-    public function setCode($code) {
-        $this->code = $code;
     }
 
     public function getName() {
