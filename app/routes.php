@@ -52,7 +52,16 @@ $app->get('/practitioners/search/', function() use ($app) {
 
 // Results page for practitioners
 $app->post('/practitioners/results/', function(Request $request) use ($app) {
-    $typeId = $request->request->get('type');
-    $practitioners = $app['dao.practitioner']->findAllByType($typeId);
+    if ($request->request->has('type')) {
+        // Simple search by type
+        $typeId = $request->request->get('type');
+        $practitioners = $app['dao.practitioner']->findAllByType($typeId);
+    }
+    else {
+        // Advanced search by name and city
+        $name = $request->request->get('name');
+        $city = $request->request->get('city');
+        $practitioners = $app['dao.practitioner']->findAllByNameAndCity($name, $city);
+    }
     return $app['twig']->render('practitioners_results.html.twig', array('practitioners' => $practitioners));
 });

@@ -34,7 +34,7 @@ class PractitionerDAO extends DAO
     }
 
     /**
-     * Returns the list of all practitioners for a given type, sorted by tname and first name.
+     * Returns the list of all practitioners for a given type, sorted by name and first name.
      *
      * @param integer $typeId The practitioner type id.
      *
@@ -43,6 +43,29 @@ class PractitionerDAO extends DAO
     public function findAllByType($typeId) {
         $sql = "select * from practitioner where practitioner_type_id=? order by practitioner_name, practitioner_first_name";
         $result = $this->getDb()->fetchAll($sql, array($typeId));
+        
+        // Convert query result to an array of domain objects
+        $practitioners = array();
+        foreach ($result as $row) {
+            $practitionerId = $row['practitioner_id'];
+            $practitioners[$practitionerId] = $this->buildDomainObject($row);
+        }
+        return $practitioners;
+    }
+
+    /**
+     * Returns the list of all practitioners matching a name and/or a city, sorted by name and first name.
+     *
+     * @param string $name The name.
+     * @param string $city The city.
+     *
+     * @return array The list of practitioners.
+     */
+    public function findAllByNameAndCity($name, $city) {
+        $sql = "select * from practitioner where practitioner_name like ? and practitioner_city like ? 
+            order by practitioner_name, practitioner_first_name";
+        // If $name and $city are undefined, the SQL query returns all names (%%) and all cities (%%)
+        $result = $this->getDb()->fetchAll($sql, array('%' . $name . '%', '%' . $city . '%'));
         
         // Convert query result to an array of domain objects
         $practitioners = array();
