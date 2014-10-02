@@ -28,6 +28,29 @@ class VisitorDAO extends DAO implements UserProviderInterface
     }
 
     /**
+     * Saves a visitor into the database.
+     *
+     * @param \GSB\Domain\Visitor $visitor The visitor to save
+     */
+    public function save($visitor) {
+        $visitorData = array(
+            'user_name' => $visitor->getUsername(),
+            'password' => $visitor->getPassword(),
+            );
+
+        if ($visitor->getId()) {
+            // The visitor has already been saved : update it
+            $this->getDb()->update('visitor', $visitorData, array('visitor_id' => $visitor->getId()));
+        } else {
+            // The visitor has never been saved : insert it
+            $this->getDb()->insert('visitor', $visitorData);
+            // Get the id of the newly created visitor and set it on the entity.
+            $id = $this->getDb()->lastInsertId();
+            $visitor->setId($id);
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function loadUserByUsername($username)
