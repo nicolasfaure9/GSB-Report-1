@@ -33,7 +33,14 @@ class VisitorDAO extends DAO implements UserProviderInterface
      * @param \GSB\Domain\Visitor $visitor The visitor to save
      */
     public function save($visitor) {
+        $hiringDateString = $visitor->getHiringDate()->format('Y-m-d');
         $visitorData = array(
+            'visitor_last_name' => $visitor->getLastName(),
+            'visitor_first_name' => $visitor->getFirstName(),
+            'visitor_address' => $visitor->getAddress(),
+            'visitor_zip_code' => $visitor->getZipCode(),
+            'visitor_city' => $visitor->getCity(),
+            'hiring_date' => $hiringDateString,
             'user_name' => $visitor->getUsername(),
             'password' => $visitor->getPassword(),
             );
@@ -93,6 +100,14 @@ class VisitorDAO extends DAO implements UserProviderInterface
     protected function buildDomainObject($row) {
         $visitor = new Visitor();
         $visitor->setId($row['visitor_id']);
+        $visitor->setLastName($row['visitor_last_name']);
+        $visitor->setFirstName($row['visitor_first_name']);
+        $visitor->setAddress($row['visitor_address']);
+        $visitor->setZipCode($row['visitor_zip_code']);
+        $visitor->setCity($row['visitor_city']);
+        // Transform the DB date into a DateTime object
+        $hiringDate = \DateTime::createFromFormat('Y-m-d', $row['hiring_date']);
+        $visitor->setHiringDate($hiringDate);
         $visitor->setUsername($row['user_name']);
         $visitor->setPassword($row['password']);
         $visitor->setSalt($row['salt']);

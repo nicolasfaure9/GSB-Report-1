@@ -12,10 +12,76 @@
 <div class="well">
 {{ form_start(visitorForm, { 'attr': {'class': 'form-horizontal'} }) }}
     <div class="form-group">
-        {{ form_label(visitorForm.username, NULL, { 'label_attr':  {
+        {{ form_label(visitorForm.lastName, NULL, { 'label_attr':  {
+            'class': 'col-sm-4 col-md-5 control-label'
+        }}) }}
+        <div class="col-sm-5 col-md-3">
+            {{ form_errors(visitorForm.lastName) }}
+            {{ form_widget(visitorForm.lastName, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(visitorForm.firstName, NULL, { 'label_attr':  {
+            'class': 'col-sm-4 col-md-5 control-label'
+        }}) }}
+        <div class="col-sm-5 col-md-3">
+            {{ form_errors(visitorForm.firstName) }}
+            {{ form_widget(visitorForm.firstName, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(visitorForm.address, NULL, { 'label_attr':  {
             'class': 'col-sm-4 col-md-5 control-label'
         }}) }}
         <div class="col-sm-6 col-md-4">
+            {{ form_errors(visitorForm.address) }}
+            {{ form_widget(visitorForm.address, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(visitorForm.zipCode, NULL, { 'label_attr':  {
+            'class': 'col-sm-4 col-md-5 control-label'
+        }}) }}
+        <div class="col-sm-2">
+            {{ form_errors(visitorForm.zipCode) }}
+            {{ form_widget(visitorForm.zipCode, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(visitorForm.city, NULL, { 'label_attr':  {
+            'class': 'col-sm-4 col-md-5 control-label'
+        }}) }}
+        <div class="col-sm-5 col-md-3">
+            {{ form_errors(visitorForm.city) }}
+            {{ form_widget(visitorForm.city, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(visitorForm.hiringDate, NULL, { 'label_attr':  {
+            'class': 'col-sm-4 col-md-5 control-label'
+        }}) }}
+        <div class="col-sm-5 col-md-3">
+            {{ form_errors(visitorForm.hiringDate) }}
+            {{ form_widget(visitorForm.hiringDate, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(visitorForm.username, NULL, { 'label_attr':  {
+            'class': 'col-sm-4 col-md-5 control-label'
+        }}) }}
+        <div class="col-sm-2 col-md-3">
             {{ form_errors(visitorForm.username) }}
             {{ form_widget(visitorForm.username, { 'attr':  {
                 'class': 'form-control'
@@ -26,7 +92,7 @@
         {{ form_label(visitorForm.password, NULL, { 'label_attr':  {
             'class': 'col-sm-4 col-md-5 control-label'
         }}) }}
-        <div class="col-sm-6 col-md-4">
+        <div class="col-sm-5 col-md-3">
             {{ form_errors(visitorForm.password) }}
             {{ form_widget(visitorForm.password, { 'attr':  {
                 'class': 'form-control'

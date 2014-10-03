@@ -14,14 +14,56 @@ class Visitor implements UserInterface
     private $id;
 
     /**
-     * Visitor name.
+     * Last name.
      *
      * @var string
      */
-    private $name;
+    private $lastName;
 
     /**
-     * Visitor password.
+     * First name.
+     *
+     * @var string
+     */
+    private $firstName;
+
+    /**
+     * Address.
+     *
+     * @var string
+     */
+    private $address;
+
+    /**
+     * Zip Code.
+     *
+     * @var string
+     */
+    private $zipCode;
+
+    /**
+     * City.
+     *
+     * @var string
+     */
+    private $city;
+
+    /**
+     * Hiring date.
+     *
+     * @var DateTime
+     */
+    private $hiringDate;
+
+    /**
+     * User name (used for authentication).
+     *
+     * @var string
+     */
+    private $username;
+
+    /**
+     * Password.
      *
      * @var string
      */
@@ -36,7 +78,6 @@ class Visitor implements UserInterface
 
     /**
      * Role.
-     * Values : ROLE_USER or ROLE_ADMIN.
      *
      * @var string
      */
@@ -51,14 +92,134 @@ class Visitor implements UserInterface
     }
 
     /**
+     * Set last name.
+     *
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+    
+    /**
+     * Returns last name.
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+    
+    /**
+     * Set first name.
+     *
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+    
+    /**
+     * Returns first name.
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set address.
+     *
+     * @param string $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+    
+    /**
+     * Returns address.
+     *
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set zip code.
+     *
+     * @param string $zipCode
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
+    }
+    
+    /**
+     * Returns zip code.
+     *
+     * @return string
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * Set city.
+     *
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+    
+    /**
+     * Returns city.
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set hiring date.
+     *
+     * @param DateTime $hiringDate
+     */
+    public function setHiringDate($hiringDate)
+    {
+        $this->hiringDate = $hiringDate;
+    }
+    
+    /**
+     * Returns hiring date.
+     *
+     * @return DateTime
+     */
+    public function getHiringDate()
+    {
+        return $this->hiringDate;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getUsername() {
-        return $this->name;
+        return $this->username;
     }
 
-    public function setUsername($name) {
-        $this->name = $name;
+    public function setUsername($username) {
+        $this->username = $username;
     }
 
     /**
@@ -107,25 +268,5 @@ class Visitor implements UserInterface
      */
     public function eraseCredentials() {
         // Nothing to do here
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function equals(UserInterface $visitor) {
-        $class = get_class($this);
-        if (!$visitor instanceof $class) {
-            return false;
-        }
-        if ($this->password !== $visitor->getPassword()) {
-            return false;
-        }
-        if ($this->salt !== $visitor->getSalt()) {
-            return false;
-        }
-        if ($this->name !== $visitor->getUsername()) {
-            return false;
-        }
-        return true;
     }
 }

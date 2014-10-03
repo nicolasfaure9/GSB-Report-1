@@ -10,6 +10,24 @@ class VisitorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('lastName', 'text', array(
+                'label' => "Nom",
+            ))
+            ->add('firstName', 'text', array(
+                'label' => "Prénom",
+            ))
+            ->add('address', 'text', array(
+                'label' => "Adresse",
+            ))
+            ->add('zipCode', 'text', array(
+                'label' => "Code postal",
+            ))
+            ->add('city', 'text', array(
+                'label' => "Ville",
+            ))
+            ->add('hiringDate', 'date', array(
+                'label' => "Date d'embauche",
+            ))
             ->add('username', 'text', array(
                 'label' => "Nom d'utilisateur",
             ))
