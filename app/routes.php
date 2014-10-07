@@ -1,7 +1,9 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use GSB\Domain\VisitReport;
 use GSB\Form\Type\VisitorType;
+use GSB\Form\Type\VisitReportType;
 
 // Home page
 $app->get('/', function () use ($app) {
@@ -93,4 +95,25 @@ $app->match('/me', function(Request $request) use ($app) {
     }
     $visitorFormView = $visitorForm->createView();
     return $app['twig']->render('visitor.html.twig', array('visitorForm' => $visitorFormView));
+});
+
+// New visit report
+$app->match('/reports/add/', function(Request $request) use ($app) {
+    $visitor = $app['security']->getToken()->getUser();
+    $visitReportFormView = NULL;
+    $visitReport = new VisitReport();
+    $visitReport->setVisitor($visitor);
+    $practitioners = $app['dao.practitioner']->findAll();
+    $visitReportForm = $app['form.factory']->create(new VisitReportType($practitioners), $visitReport);
+    $visitReportForm->handleRequest($request);
+    if ($visitReportForm->isValid()) {
+        // Manually affect practitioner to the new visit report
+        $practitionerId = $visitReportForm->get('practitioner')->getData();
+        $practitioner = $app['dao.practitioner']->find($practitionerId);
+        $visitReport->setPractitioner($practitioner);
+        $app['dao.visitreport']->save($visitReport);
+        $app['session']->getFlashBag()->add('success', 'Votre rapport de visite a été ajouté.');
+    }
+    $visitReportFormView = $visitReportForm->createView();
+    return $app['twig']->render('visitreport.html.twig', array('visitReportForm' => $visitReportFormView));
 });

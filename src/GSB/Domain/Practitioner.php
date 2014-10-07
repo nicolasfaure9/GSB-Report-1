@@ -123,4 +123,8 @@ class Practitioner
     public function setType($type) {
         $this->type = $type;
     }
+
+    public function __toString() {
+        return $this->getFirstName() . ' ' . $this->getName() ;
+    }
 }
