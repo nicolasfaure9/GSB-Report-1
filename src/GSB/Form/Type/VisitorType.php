@@ -27,6 +27,7 @@ class VisitorType extends AbstractType
             ))
             ->add('hiringDate', 'date', array(
                 'label' => "Date d'embauche",
+                'widget' => 'single_text',    // field is rendered as a simple input of type 'date'
             ))
             ->add('username', 'text', array(
                 'label' => "Nom d'utilisateur",
