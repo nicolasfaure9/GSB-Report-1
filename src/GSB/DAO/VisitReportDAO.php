@@ -25,6 +25,26 @@ class VisitReportDAO extends DAO
     }
 
     /**
+     * Returns a list of all visit reports for a visitor, sorted by date (most recent first).
+     *
+     * @param $visitorId The visitor id.
+     *
+     * @return array A list of all visit reports for the visitor.
+     */
+    public function findAllByVisitor($visitorId) {
+        $sql = "select * from visit_report where visitor_id=? order by reporting_date";
+        $result = $this->getDb()->fetchAll($sql, array($visitorId));
+        
+        // Convert query result to an array of domain objects
+        $visitReports = array();
+        foreach ($result as $row) {
+            $visitReportId = $row['report_id'];
+            $visitReports[$visitReportId] = $this->buildDomainObject($row);
+        }
+        return $visitReports;
+    }
+
+    /**
      * Saves a visit report into the database.
      *
      * @param \GSB\Domain\VisitReport $visitReport The visit report to save

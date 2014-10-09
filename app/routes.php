@@ -97,6 +97,14 @@ $app->match('/me', function(Request $request) use ($app) {
     return $app['twig']->render('visitor.html.twig', array('visitorForm' => $visitorFormView));
 });
 
+// List of all visit reports for the current visitor
+$app->get('/reports/', function() use ($app) {
+    $visitor = $app['security']->getToken()->getUser();
+    $visitorId = $visitor->getId();
+    $visitReports = $app['dao.visitreport']->findAllByVisitor($visitorId);
+    return $app['twig']->render('visitreports.html.twig', array('visitReports' => $visitReports));
+});
+
 // New visit report
 $app->match('/reports/add/', function(Request $request) use ($app) {
     $visitor = $app['security']->getToken()->getUser();

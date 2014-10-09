@@ -31,6 +31,7 @@ class VisitReportType extends AbstractType
             ))
             ->add('date', 'date', array(
                 'label' => "Date",
+                'widget' => 'single_text',    // this field is rendered as a simple input of type 'date'
             ))
             ->add('purpose', 'textarea', array(
                 'label' => "Motif",
