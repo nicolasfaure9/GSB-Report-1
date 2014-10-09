@@ -9,7 +9,7 @@ class PractitionerTypeDAO extends DAO
     /**
      * Returns the list of all practitioner types, sorted by name.
      *
-     * @return array The list of all families.
+     * @return array The list of all practitioner types.
      */
     public function findAll() {
         $sql = "select * from practitioner_type order by practitioner_type_name";
