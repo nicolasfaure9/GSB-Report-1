@@ -9,6 +9,6 @@
         "symfony/translation": "~2.4"
     },
     "autoload": {
-        "psr-0": {"GSB": "src/"}
+        "psr-4": {"GSB\\": "src"}
     }
 }
